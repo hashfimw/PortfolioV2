@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-ExtraboldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Extrabold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-BlackItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-RegularItalic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-BoldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-ThinItalic.woff2") format("woff2");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix Ultra";
+  src: url("/fonts/SpotifyMix-UltraItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix";
+  src: url("/fonts/SpotifyMix-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spotify Mix Ultra";
+  src: url("/fonts/SpotifyMix-Ultra.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Spotify-inspired scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #535353;
+  border-radius: 6px;
+  border: 3px solid #121212;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6a6a6a;
+}
+
+/* Base styles */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Spotify Mix", "Spotify Mix Ultra", sans-serif;
+}
+
+
+/* Custom Spotify-inspired reusable components */
+@layer components {
+  /* Card hover effects */
+  .spotify-card {
+    @apply bg-spotify-dark-elevated rounded-md transition-all duration-300 hover:bg-spotify-dark-highlight;
+  }
+
+  /* Button styles */
+  .spotify-button-primary {
+    @apply bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full px-6 py-2 transition-colors duration-200;
+  }
+
+  .spotify-button-secondary {
+    @apply bg-white hover:bg-neutral-200 text-black font-medium rounded-full px-6 py-2 transition-colors duration-200;
+  }
+
+  .spotify-button-dark {
+    @apply bg-spotify-dark-elevated hover:bg-spotify-dark-highlight text-white font-medium rounded-full px-6 py-2 transition-colors duration-200 border border-neutral-700;
+  }
+
+  /* Link styles */
+  .spotify-link {
+    @apply text-spotify-green hover:text-spotify-green-bright underline-offset-2 hover:underline transition-colors duration-200;
+  }
+
+  /* Gradient backgrounds */
+  .spotify-gradient-subtle {
+    @apply bg-gradient-to-b from-spotify-dark-highlight/50 to-spotify-dark;
+  }
+
+  .spotify-gradient-colored {
+    @apply bg-gradient-to-tr from-spotify-purple/30 via-spotify-dark to-spotify-green/30;
+  }
+
+  /* Container with Spotify-like padding */
+  .spotify-container {
+    @apply px-4 md:px-8 max-w-screen-xl mx-auto;
+  }
+
+  /* Section styles */
+  .spotify-section {
+    @apply py-6 md:py-8;
+  }
+
+  /* Heading styles */
+  .spotify-heading-xl {
+    @apply text-3xl md:text-5xl font-bold;
+  }
+
+  .spotify-heading-lg {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  .spotify-heading-md {
+    @apply text-xl font-bold;
+  }
+
+  /* Spotify-like grid for cards */
+  .spotify-grid {
+    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6;
+  }
+}
+
+/* Animations */
+@keyframes spotifyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spotify-fade-in {
+  animation: spotifyFadeIn 0.5s ease forwards;
+}
+
+/* Spotify-like album/project card hover effect */
+.spotify-card-hover {
+  transition: all 0.3s ease;
+}
+
+.spotify-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Media queries for responsive behavior similar to Spotify */
+@media (max-width: 768px) {
+  .spotify-mobile-hidden {
+    display: none;
+  }
+
+  .spotify-mobile-only {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .spotify-mobile-only {
+    display: none;
+  }
+
+  .spotify-desktop-only {
+    display: block;
+  }
+}
+
+/* Fix any conflict with ShadCN */
+.bg-background {
+  background-color: #121212 !important;
+}
+
+/* Specific utility for text gradients */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #1db954, #1ed760);
+}
