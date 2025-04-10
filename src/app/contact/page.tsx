@@ -6,7 +6,6 @@ import {
   Send,
   Github,
   Linkedin,
-  Twitter,
   MapPin,
   Mail,
   Phone,
