@@ -409,7 +409,7 @@ const NowPlayingBar = () => {
       <div
         className={`${
           expandMobilePlayer ? "opacity-0 pointer-events-none" : "opacity-100"
-        } md:hidden w-full bg-neutral-900 h-16 items-center px-3 fixed bottom-16 left-0 right-0 z-20 border-t border-neutral-800 transition-opacity duration-300 ease-in-out flex`}
+        } md:hidden w-full bg-spotify-dark h-14 items-center px-3 fixed bottom-14 left-0 right-0 z-20 border-t border-neutral-800 transition-opacity duration-300 ease-in-out flex`}
       >
         <div className="w-10 h-10 flex-shrink-0 bg-neutral-800 rounded mr-3 overflow-hidden">
           {currentTrack.cover && (
@@ -458,7 +458,7 @@ const NowPlayingBar = () => {
         </div>
 
         {/* Progress bar for mini player */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-neutral-800">
+        <div className="absolute bottom-0 left-1 right-1 h-1 bg-spotify-dark-highlight rounded-2xl ">
           <div
             className="bg-green-500 h-full"
             style={{ width: `${progress}%` }}
@@ -726,7 +726,7 @@ const NowPlayingBar = () => {
           {/* Volume & other controls (right) */}
           <div className="flex justify-end items-center gap-3">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/hashfimw"
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-white"
@@ -736,7 +736,7 @@ const NowPlayingBar = () => {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/hashfimawarid"
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-white"

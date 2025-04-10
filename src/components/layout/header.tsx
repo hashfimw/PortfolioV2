@@ -53,7 +53,7 @@ export default function Header() {
 
   return (
     <header className="bg-black">
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto">
         <div className="flex items-center justify-between px-4 py-[4.2px]">
           {/* Left side - Navigation controls */}
           <div className="flex items-center">
@@ -83,7 +83,7 @@ export default function Header() {
                 height={24}
                 className="mr-2"
               />
-              <h1 className="text-lg font-medium text-white">
+              <h1 className="md:text-lg font-medium text-white text-base">
                 Hashfi Portfolio
               </h1>
             </div>
@@ -95,7 +95,7 @@ export default function Header() {
           </div>
 
           {/* Right side - Actions */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-1 md:space-x-1">
             {/* Resume download button */}
             <a
               href="https://drive.google.com/uc?export=download&id=1f7tXrloPfaENNW3KS4rpegsnDWzYYZDS"
@@ -114,7 +114,7 @@ export default function Header() {
             </Link>
 
             {/* Profile avatar */}
-            <div className="relative group pl-2">
+            <div className="relative group md:pl-4">
               <Link href="/about">
                 <div className="w-11 h-11 rounded-full overflow-hidden border-[5px] border-spotify-dark-highlight transition-all duration-200 hover:scale-105">
                   <Image

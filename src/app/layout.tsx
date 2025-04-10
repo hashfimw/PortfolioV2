@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="bg-black">
+      <body className="bg-black overflow-hidden">
         <div className="flex h-screen flex-col md:flex-row">
           <div className="hidden md:flex w-64 flex-shrink-0 flex-col bg-black pl-2">
             {/* Logo di luar sidebar, sejajar dengan header */}
@@ -32,14 +32,14 @@ export default function RootLayout({
               />
             </div>
             {/* Sidebar dimulai di bawah logo */}
-            <div className="flex-1">
+            <div className="flex-1 md:pb-[88px] ">
               <Sidebar />
             </div>
           </div>
           <div className="flex flex-1 flex-col overflow-hidden pt-2">
             <Header />
-            <div className="flex-1 overflow-hidden py-2 bg-black">
-              <div className="px-2 md:px-2 pb-32 md:pb-20 h-full">
+            <div className="flex-1 overflow-hidden py-2 bg-black md:pb-[88px] pb-[115px]">
+              <div className="px-2 md:px-2 h-full ">
                 <div className="h-full overflow-y-auto rounded-xl shadow-spotify-dark-elevated">
                   {children}
                 </div>

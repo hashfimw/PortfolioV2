@@ -15,7 +15,7 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col h-[88%] pt-5 pb-4 bg-spotify-dark rounded-xl shadow-spotify-dark-elevated">
+    <div className="flex flex-col h-full pt-5 pb-2 bg-spotify-dark rounded-xl shadow-spotify-dark-elevated">
       <div className="flex-shrink-0 px-4 mb-5">
         <Link href="/" className="flex items-center">
           <span className="text-xl font-semibold text-neutral-400 hover:text-white transition-colors">
