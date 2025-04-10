@@ -77,7 +77,7 @@ export default function Header() {
             {/* Mobile logo and title - only visible on mobile */}
             <div className="flex md:hidden items-center">
               <Image
-                src="/logowhite.png"
+                src="https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275840/logowhite_vc9dmz.png"
                 alt="Hashfi Logo"
                 width={24}
                 height={24}
@@ -118,7 +118,7 @@ export default function Header() {
               <Link href="/about">
                 <div className="w-11 h-11 rounded-full overflow-hidden border-[5px] border-spotify-dark-highlight transition-all duration-200 hover:scale-105">
                   <Image
-                    src="/me.png"
+                    src={process.env.NEXT_PUBLIC_AVATAR || ""}
                     alt="Profile"
                     width={40}
                     height={40}

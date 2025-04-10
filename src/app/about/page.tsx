@@ -43,7 +43,7 @@ export default function AboutPage() {
               playsInline
               className="pointer-events-none opacity-100"
             >
-              <source src="/aboutnp.mp4" type="video/mp4" />
+              <source src={process.env.NEXT_PUBLIC_PLAYER} type="video/mp4" />
             </video>
           </div>
 

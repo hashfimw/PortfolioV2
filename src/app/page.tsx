@@ -37,7 +37,7 @@ export default function Home() {
               loop
               playsInline
             >
-              <source src="/homebg3.mp4" type="video/mp4" />
+              <source src={process.env.NEXT_PUBLIC_HERO} type="video/mp4" />
             </video>
           </div>
           {/* Overlay gradient */}

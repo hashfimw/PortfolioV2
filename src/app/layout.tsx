@@ -24,7 +24,7 @@ export default function RootLayout({
             {/* Logo di luar sidebar, sejajar dengan header */}
             <div className="py-[15px] px-2 pl-4 ">
               <Image
-                src="/logowhite.png"
+                src="https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275840/logowhite_vc9dmz.png"
                 alt="Logo"
                 width={39}
                 height={35}

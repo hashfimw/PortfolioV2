@@ -28,13 +28,13 @@ const demoTracks: Track[] = [
     title: "rue royale",
     artist: "nomar.wav,cloud cover",
     cover: "/rueroyalecover.png",
-    audioSrc: "/rueroyale-nomar.mp3",
+    audioSrc: process.env.NEXT_PUBLIC_RUE_ROYALE || "",
   },
   {
     title: "Better Days",
     artist: "Purrple Cat",
     cover: "/betterdays-cover.png",
-    audioSrc: "/purrple-cat-better-days.mp3",
+    audioSrc: process.env.NEXT_PUBLIC_BETTER_DAYS || "",
   },
 ];
 
@@ -482,9 +482,7 @@ const NowPlayingBar = () => {
           >
             <XIcon className="w-6 h-6" />
           </button>
-          <span className="text-white text-sm uppercase font-medium">
-            Now Playing
-          </span>
+          <span className="text-white text-sm font-medium">Now Playing</span>
           <button
             className={`${isLiked ? "text-red-600" : "text-white"}`}
             onClick={toggleLike}
@@ -586,9 +584,7 @@ const NowPlayingBar = () => {
           >
             <XIcon className="w-6 h-6 " />
           </button>
-          <span className="text-white text-lg uppercase font-bold">
-            Now Playing
-          </span>
+          <span className="text-white text-lg font-bold">Now Playing</span>
           <button
             className={`${isLiked ? "text-red-600" : "text-white"}`}
             onClick={toggleLike}
