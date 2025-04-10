@@ -66,15 +66,6 @@ export default function AboutPage() {
               <Linkedin className="h-5 w-5 mr-2" />
               LinkedIn
             </a>
-            {/* <a
-              href="https://twitter.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-4 py-2 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight rounded-full transition-colors"
-            >
-              <Twitter className="h-5 w-5 mr-2" />
-              Twitter
-            </a> */}
           </div>
         </div>
 

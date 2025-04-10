@@ -104,7 +104,7 @@ export default function ContactPage() {
     <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4 overflow-x-hidden">
       {/* Header */}
       <div className="relative pt-10 md:pt-16 pb-12 p-2">
-        <div className="absolute inset-0 bg-gradient-to-b from-spotify-blue/20 to-transparent opacity-50 rounded-xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/70 to-transparent opacity-30 rounded-xl"></div>
         <div className="relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-neutral-200">
             Contact Me
@@ -175,19 +175,19 @@ export default function ContactPage() {
           {/* Social Links */}
           <Card className="bg-spotify-dark-elevated border-none">
             <CardHeader className="pb-2">
-              <CardTitle className="font-medium text-neutral-200">
+              <CardTitle className="font-medium text-neutral-200 pb-2">
                 Connect With Me
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <a
                   href="https://github.com/hashfimw"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
+                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark  hover:bg-spotify-dark-highlight rounded-lg transition-colors"
                 >
-                  <Github className="h-8 w-8 mb-2" />
+                  <Github className="h-8 w-8 mb-2 text-spotify-light-gray" />
                   <span className="text-sm text-neutral-200">GitHub</span>
                 </a>
 
@@ -197,25 +197,15 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
                 >
-                  <Linkedin className="h-8 w-8 mb-2" />
+                  <Linkedin className="h-8 w-8 mb-2 text-spotify-light-gray" />
                   <span className="text-sm text-neutral-200">LinkedIn</span>
-                </a>
-
-                <a
-                  href="https://twitter.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
-                >
-                  <Twitter className="h-8 w-8 mb-2" />
-                  <span className="text-sm text-neutral-200">Twitter</span>
                 </a>
               </div>
             </CardContent>
           </Card>
 
           {/* Availability */}
-          <div className="bg-gradient-to-r from-spotify-green/20 to-spotify-green/5 p-6 rounded-lg">
+          <div className="bg-gradient-to-r from-spotify-purple/20 to-spotify-purple/20 p-6 rounded-lg">
             <h2 className="font-medium mb-2 text-neutral-200">
               Current Availability
             </h2>
