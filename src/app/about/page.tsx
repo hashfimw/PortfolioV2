@@ -1,15 +1,28 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
-import { Download, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function AboutPage() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Auto-play video when component mounts
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error("Video autoplay failed:", error);
+      });
+    }
+  }, []);
+
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-10 rounded-xl bg-spotify-dark p-4">
       {/* Header with background gradient */}
-      <div className="relative pt-10 md:pt-16 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/20 to-transparent opacity-30"></div>
-        <div className="relative z-10">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">About Me</h1>
+      <div className="relative pt-10 md:pt-16 pb-12 p-2">
+        <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/70 to-transparent opacity-30 rounded-xl"></div>
+        <div className="relative z-10 ml-2">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">About Me</h1>
           <p className="text-neutral-400 text-lg max-w-3xl">
             Full Stack Developer passionate about creating beautiful,
             functional, and user-friendly web applications.
@@ -21,17 +34,20 @@ export default function AboutPage() {
       <section className="grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Profile Picture */}
         <div className="md:col-span-2">
-          <div className="relative aspect-square w-full max-w-md mx-auto md:mx-0 rounded-lg overflow-hidden shadow-xl spotify-card-hover">
-            <Image
-              src="https://res.cloudinary.com/ddzq2jzva/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1742676615/Spotify_Playlist_Song_Aesthetic_Instagram_Post_6_htrfnh.png"
-              alt="Your Name"
-              layout="fill"
-              objectFit="cover"
-              className="bg-spotify-dark-elevated"
-            />
+          <div className="relative aspect-square w-full max-w-md mx-auto md:mx-0 rounded-lg overflow-hidden spotify-card-hover">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="pointer-events-none opacity-100"
+            >
+              <source src="/aboutnp.mp4" type="video/mp4" />
+            </video>
           </div>
 
-          <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
+          <div className="mt-6 flex flex-wrap justify-center md:justify-center gap-4">
             <a
               href="https://github.com/hashfimw"
               target="_blank"
@@ -50,7 +66,7 @@ export default function AboutPage() {
               <Linkedin className="h-5 w-5 mr-2" />
               LinkedIn
             </a>
-            <a
+            {/* <a
               href="https://twitter.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
@@ -58,7 +74,7 @@ export default function AboutPage() {
             >
               <Twitter className="h-5 w-5 mr-2" />
               Twitter
-            </a>
+            </a> */}
           </div>
         </div>
 
@@ -67,7 +83,7 @@ export default function AboutPage() {
           <div className="bg-spotify-dark-elevated p-6 rounded-lg">
             <h2 className="text-xl font-bold mb-4 flex items-center">
               <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
-              Hello, I'm Hashfi Mawarid
+              Hello, I&apos;m Hashfi Mawarid
             </h2>
             <div className="space-y-4 text-neutral-300">
               <p>
@@ -129,25 +145,6 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-
-          {/* Actions */}
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="https://drive.google.com/uc?export=download&id=1f7tXrloPfaENNW3KS4rpegsnDWzYYZDS"
-              target="_blank"
-              className="inline-flex items-center px-5 py-2 bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full transition-colors"
-            >
-              <Download className="h-5 w-5 mr-2" />
-              Download Resume
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-5 py-2 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight border border-neutral-700 rounded-full transition-colors"
-            >
-              <Mail className="h-5 w-5 mr-2" />
-              Contact Me
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -188,7 +185,7 @@ export default function AboutPage() {
             {
               title: "Full Stack Solutions",
               description:
-                "Developing end-to-end web applications from concept to deployment with focus on performance and scalability.",
+                "Developing end-to-end web applications from concept to deployment with focus on user experience, performance and scalability.",
               skills: [
                 "System Architecture",
                 "Performance Optimization",
@@ -305,25 +302,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-spotify-green/20 to-spotify-blue/20 p-6 rounded-lg">
+      <section className="bg-gradient-to-b from-spotify-dark to-spotify-purple/20 p-6 rounded-lg">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-3">Let's Connect!</h2>
+          <h2 className="text-xl font-bold mb-3">Let&apos;s Connect!</h2>
           <p className="text-neutral-300 mb-6">
-            I'm always interested in new projects, collaborations, or just
-            chatting about technology. Feel free to reach out if you'd like to
-            work together or have any questions.
+            I&apos;m always interested in new projects, collaborations, or just
+            chatting about technology. Feel free to reach out if you&apos;d like
+            to work together or have any questions.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
             <Link
               href="/contact"
-              className="inline-flex items-center px-6 py-3 bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight text-neutral-300 font-medium rounded-full transition-colors"
             >
               <Mail className="h-5 w-5 mr-2" />
               Contact Me
             </Link>
             <Link
               href="/projects"
-              className="inline-flex items-center px-6 py-3 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight border border-neutral-700 rounded-full transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight  text-neutral-300 rounded-full transition-colors"
             >
               View My Work
             </Link>

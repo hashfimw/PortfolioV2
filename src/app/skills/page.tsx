@@ -1,3 +1,4 @@
+import { SkillIcons } from "@/components/icon/skill";
 import { skillCategories } from "@/lib/data";
 
 export default function SkillsPage() {
@@ -17,11 +18,11 @@ export default function SkillsPage() {
   };
 
   return (
-    <div className="space-y-10 pb-10">
-      <div className="relative pt-10 md:pt-16 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-500/20 to-transparent opacity-30"></div>
+    <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4">
+      <div className="relative pt-10 md:pt-16 pb-12 p-2">
+        <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/70 to-transparent opacity-30 rounded-xl"></div>
         <div className="relative z-10">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
             Skills & Expertise
           </h1>
           <p className="text-neutral-400 text-lg max-w-3xl">
@@ -34,8 +35,8 @@ export default function SkillsPage() {
       <section className="bg-spotify-dark-elevated p-6 rounded-lg mb-8">
         <p className="text-neutral-300">
           I continuously strive to expand my skill set and stay up-to-date with
-          the latest technologies and best practices. Here's a breakdown of my
-          technical skills and expertise across different categories.
+          the latest technologies and best practices. Here&apos;s a breakdown of
+          my technical skills and expertise across different categories.
         </p>
       </section>
 
@@ -44,7 +45,9 @@ export default function SkillsPage() {
           <section key={index}>
             <h2 className="text-xl font-bold mb-6 flex items-center">
               <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
-              <span className="mr-2">{category.icon}</span>
+              <span className="mr-2 text-neutral-300">
+                <SkillIcons categoryName={category.name} />
+              </span>
               {category.name}
             </h2>
 
@@ -78,15 +81,7 @@ export default function SkillsPage() {
           <div className="mb-6">
             <h3 className="font-medium mb-3">Languages</h3>
             <div className="flex flex-wrap gap-2">
-              {[
-                "JavaScript",
-                "TypeScript",
-                "HTML",
-                "CSS",
-                "Python",
-                "SQL",
-                "Bash",
-              ].map((lang) => (
+              {["JavaScript", "TypeScript", "HTML", "CSS"].map((lang) => (
                 <span
                   key={lang}
                   className="px-3 py-1 rounded-full bg-spotify-dark text-sm"
@@ -104,10 +99,10 @@ export default function SkillsPage() {
                 "React",
                 "Next.js",
                 "Express",
-                "Django",
+                "Prisma ORM",
+                "Leaflet Map",
                 "Tailwind CSS",
-                "Material UI",
-                "Redux",
+                "Shadcn UI",
                 "React Query",
                 "Framer Motion",
               ].map((framework) => (
@@ -129,13 +124,11 @@ export default function SkillsPage() {
                 "GitHub",
                 "VS Code",
                 "Docker",
-                "Webpack",
+                "Postman",
                 "Vercel",
-                "AWS",
-                "Firebase",
                 "Netlify",
                 "Figma",
-                "Adobe XD",
+                "Canva",
               ].map((tool) => (
                 <span
                   key={tool}
@@ -150,14 +143,7 @@ export default function SkillsPage() {
           <div>
             <h3 className="font-medium mb-3">Databases</h3>
             <div className="flex flex-wrap gap-2">
-              {[
-                "MongoDB",
-                "PostgreSQL",
-                "MySQL",
-                "Redis",
-                "Firebase",
-                "Supabase",
-              ].map((db) => (
+              {["PostgreSQL", "MySQL", "Supabase", "NoSQL"].map((db) => (
                 <span
                   key={db}
                   className="px-3 py-1 rounded-full bg-spotify-dark text-sm"
@@ -170,11 +156,11 @@ export default function SkillsPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-spotify-green/20 to-spotify-blue/20 p-6 rounded-lg">
+      <section className="bg-gradient-to-b from-spotify-dark to-spotify-purple/20 p-6 rounded-lg">
         <h2 className="text-xl font-bold mb-4">Currently Learning</h2>
         <p className="text-neutral-300 mb-4">
           I believe in continuous learning and growth. Here are some
-          technologies and skills I'm currently focusing on:
+          technologies and skills I&apos;m currently focusing on:
         </p>
         <div className="flex flex-wrap gap-2 mb-6">
           {["Vue.js", "MonggoDB", "WordPress", "Laravel"].map((item) => (
@@ -188,7 +174,7 @@ export default function SkillsPage() {
         </div>
         <p className="text-sm text-neutral-400">
           Do you have a project that requires any of these skills or
-          technologies? I'd love to hear about it!
+          technologies? I&apos;d love to hear about it!
         </p>
       </section>
     </div>

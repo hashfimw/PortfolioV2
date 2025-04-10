@@ -15,17 +15,17 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col h-full pt-5 pb-4 ">
+    <div className="flex flex-col h-[88%] pt-5 pb-4 bg-spotify-dark rounded-xl shadow-spotify-dark-elevated">
       <div className="flex-shrink-0 px-4 mb-5">
         <Link href="/" className="flex items-center">
-          <span className="text-xl font-semibold text-neutral-400 hover:text-white bg-clip-text">
-            Hashfi's Library
+          <span className="text-xl font-semibold text-neutral-400 hover:text-white transition-colors">
+            Hashfi&apos;s Library
           </span>
         </Link>
       </div>
 
-      <div className="flex-1 flex flex-col overflow-y-auto">
-        <nav className="mt-5 flex-1 px-3 space-y-1">
+      <div className="flex-1 flex flex-col overflow-y-auto px-3">
+        <nav className="mt-5 flex-1 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             const ItemIcon = item.icon;
@@ -35,18 +35,18 @@ export default function Sidebar() {
                 key={item.name}
                 href={item.href}
                 className={`
-                  flex items-center px-3 py-2 text-sm font-medium rounded-md
+                  flex items-center px-4 py-2.5 text-sm font-medium rounded-md
                   ${
                     isActive
                       ? "bg-neutral-800 text-white"
-                      : "text-neutral-400 hover:text-white hover:bg-neutral-800"
+                      : "text-neutral-400 hover:text-white hover:bg-neutral-800/70"
                   }
-                  transition-colors duration-200
+                  transition-all duration-200 ease-in-out
                 `}
               >
                 <ItemIcon
-                  className={`h-5 w-5 mr-3 ${
-                    isActive ? "text-green-500" : "text-neutral-400"
+                  className={`h-6 w-6 mr-3 ${
+                    isActive ? "text-white" : "text-neutral-400"
                   }`}
                 />
                 {item.name}
@@ -56,15 +56,14 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      <div className="px-4 mt-8 mb-4">
-        <div className="bg-neutral-800 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-white">Contact Me</h3>
-          <p className="mt-2 text-xs text-neutral-400">
-            Let's collaborate on your next project
+      <div className="px-3 mt-6 mb-2">
+        <div className="bg-neutral-800/60 rounded-xl p-4 hover:bg-neutral-800 transition-colors duration-200">
+          <p className="mt-2 text-sm text-neutral-400">
+            Let&apos;s collaborate on your next project
           </p>
           <Link
             href="/contact"
-            className="mt-3 flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-black bg-green-500 hover:bg-green-400 transition-colors duration-200"
+            className="mt-4 flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-neutral-300 bg-spotify-dark-elevated hover:bg-spotify-dark transition-all duration-200"
           >
             Get in touch
           </Link>

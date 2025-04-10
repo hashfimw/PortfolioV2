@@ -10,7 +10,21 @@ import {
   MapPin,
   Mail,
   Phone,
+  ChevronDown,
+  ChevronUp,
+  Edit3,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -19,6 +33,7 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [isOpen, setIsOpen] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -27,9 +42,7 @@ export default function ContactPage() {
   } | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormState({
       ...formState,
@@ -37,29 +50,47 @@ export default function ContactPage() {
     });
   };
 
+  const handleSelectChange = (value: string) => {
+    setFormState({
+      ...formState,
+      subject: value,
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
     try {
-      // In a real app, you would send the form data to an API endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      setSubmitStatus({
-        success: true,
-        message:
-          "Your message has been sent successfully! I'll get back to you soon.",
+      // Send form data to our API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
       });
 
-      // Reset form
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          success: true,
+          message:
+            "Your message has been sent successfully! I'll get back to you soon.",
+        });
+
+        // Reset form
+        setFormState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message || "Something went wrong");
+      }
+    } catch {
       setSubmitStatus({
         success: false,
         message: "Something went wrong. Please try again later.",
@@ -70,13 +101,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4 overflow-x-hidden">
       {/* Header */}
-      <div className="relative pt-10 md:pt-16 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-spotify-blue/20 to-transparent opacity-30"></div>
+      <div className="relative pt-10 md:pt-16 pb-12 p-2">
+        <div className="absolute inset-0 bg-gradient-to-b from-spotify-blue/20 to-transparent opacity-50 rounded-xl"></div>
         <div className="relative z-10">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Contact Me</h1>
-          <p className="text-neutral-400 text-lg max-w-3xl">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-neutral-200">
+            Contact Me
+          </h1>
+          <p className="text-neutral-300 text-lg max-w-3xl">
             Get in touch for collaborations, questions, or just to say hello.
           </p>
         </div>
@@ -85,28 +118,28 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         {/* Contact Information */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-spotify-dark-elevated p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4 flex items-center">
-              <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
-              Let's Connect
-            </h2>
-
-            <p className="text-neutral-300 mb-6">
-              Feel free to reach out through any of the channels below. I'm
-              always open to discussing new projects, opportunities, or
-              partnerships.
-            </p>
-
-            <div className="space-y-4">
+          <Card className="bg-spotify-dark-elevated border-none">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xl font-bold flex items-center text-neutral-200">
+                <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
+                Let&apos;s Connect
+              </CardTitle>
+              <CardDescription className="text-neutral-300">
+                Feel free to reach out through any of the channels below.
+                I&apos;m always open to discussing new projects, opportunities,
+                or partnerships.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 pt-4">
               <div className="flex items-start">
                 <div className="p-2 bg-spotify-dark rounded-full mr-3">
                   <Mail className="h-5 w-5 text-spotify-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Email</h3>
+                  <h3 className="font-medium text-neutral-200">Email</h3>
                   <a
-                    href="mailto:hello@yourname.com"
-                    className="text-sm text-neutral-400 hover:text-white transition-colors"
+                    href="mailto:hashfimawarid@gmail.com"
+                    className="text-sm text-neutral-300 hover:text-white transition-colors"
                   >
                     hashfimawarid@gmail.com
                   </a>
@@ -118,8 +151,8 @@ export default function ContactPage() {
                   <MapPin className="h-5 w-5 text-spotify-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Location</h3>
-                  <p className="text-sm text-neutral-400">Bandung, Indonesia</p>
+                  <h3 className="font-medium text-neutral-200">Location</h3>
+                  <p className="text-sm text-neutral-300">Bandung, Indonesia</p>
                 </div>
               </div>
 
@@ -128,214 +161,281 @@ export default function ContactPage() {
                   <Phone className="h-5 w-5 text-spotify-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Phone</h3>
-                  <p className="text-sm text-neutral-400">
-                    Available upon request
-                  </p>
+                  <Link href="https://wa.me/6285172275576">
+                    <h3 className="font-medium text-neutral-200">Phone</h3>
+                    <p className="text-sm text-neutral-300">
+                      Available upon request
+                    </p>
+                  </Link>
                 </div>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* Social Links */}
-          <div className="bg-spotify-dark-elevated p-6 rounded-lg">
-            <h2 className="font-medium mb-4">Connect With Me</h2>
+          <Card className="bg-spotify-dark-elevated border-none">
+            <CardHeader className="pb-2">
+              <CardTitle className="font-medium text-neutral-200">
+                Connect With Me
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-3 gap-3">
+                <a
+                  href="https://github.com/hashfimw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
+                >
+                  <Github className="h-8 w-8 mb-2" />
+                  <span className="text-sm text-neutral-200">GitHub</span>
+                </a>
 
-            <div className="grid grid-cols-3 gap-3">
-              <a
-                href="https://github.com/hashfimw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
-              >
-                <Github className="h-8 w-8 mb-2" />
-                <span className="text-sm">GitHub</span>
-              </a>
+                <a
+                  href="https://linkedin.com/in/hashfimawarid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
+                >
+                  <Linkedin className="h-8 w-8 mb-2" />
+                  <span className="text-sm text-neutral-200">LinkedIn</span>
+                </a>
 
-              <a
-                href="https://linkedin.com/in/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
-              >
-                <Linkedin className="h-8 w-8 mb-2" />
-                <span className="text-sm">LinkedIn</span>
-              </a>
-
-              <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
-              >
-                <Twitter className="h-8 w-8 mb-2" />
-                <span className="text-sm">Twitter</span>
-              </a>
-            </div>
-          </div>
+                <a
+                  href="https://twitter.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center p-4 bg-spotify-dark hover:bg-spotify-dark-highlight rounded-lg transition-colors"
+                >
+                  <Twitter className="h-8 w-8 mb-2" />
+                  <span className="text-sm text-neutral-200">Twitter</span>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Availability */}
           <div className="bg-gradient-to-r from-spotify-green/20 to-spotify-green/5 p-6 rounded-lg">
-            <h2 className="font-medium mb-2">Current Availability</h2>
+            <h2 className="font-medium mb-2 text-neutral-200">
+              Current Availability
+            </h2>
             <p className="text-sm text-neutral-300">
-              I'm currently accepting new projects and opportunities. My typical
-              response time is within 24 hours.
+              I&apos;m currently accepting new projects and opportunities. My
+              typical response time is within 24 hours.
             </p>
           </div>
         </div>
 
         {/* Contact Form */}
         <div className="lg:col-span-3">
-          <div className="bg-spotify-dark-elevated p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-6 flex items-center">
-              <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
-              Send Me a Message
-            </h2>
+          <Card className="bg-spotify-dark-elevated border-none">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold flex items-center text-neutral-200">
+                <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
+                Send Me a Message
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {submitStatus?.success ? (
+                <Alert className="mb-6 bg-green-900/30 border-green-800 text-green-300">
+                  <AlertTitle>Success</AlertTitle>
+                  <AlertDescription>{submitStatus.message}</AlertDescription>
+                </Alert>
+              ) : submitStatus?.success === false ? (
+                <Alert className="mb-6 bg-red-900/30 border-red-800 text-red-300">
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>{submitStatus.message}</AlertDescription>
+                </Alert>
+              ) : null}
 
-            {submitStatus?.success ? (
-              <div className="bg-green-900/30 border border-green-800 text-green-300 p-4 rounded-lg mb-6">
-                <p>{submitStatus.message}</p>
-              </div>
-            ) : submitStatus?.success === false ? (
-              <div className="bg-red-900/30 border border-red-800 text-red-300 p-4 rounded-lg mb-6">
-                <p>{submitStatus.message}</p>
-              </div>
-            ) : null}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="name"
+                      className="text-sm font-medium block text-neutral-200"
+                    >
+                      Name
+                    </label>
+                    <Input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formState.name}
+                      onChange={handleChange}
+                      required
+                      autoComplete="off"
+                      className="bg-spotify-dark border-neutral-700 focus:border-spotify-green focus:ring-spotify-green text-neutral-200"
+                      style={{ backgroundColor: "var(--spotify-dark)" }}
+                    />
+                  </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium block text-neutral-200"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      required
+                      autoComplete="off"
+                      className="bg-spotify-dark border-neutral-700 focus:border-spotify-green focus:ring-spotify-green text-neutral-200"
+                      style={{ backgroundColor: "var(--spotify-dark)" }}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
                   <label
-                    htmlFor="name"
-                    className="text-sm font-medium block mb-2"
+                    htmlFor="subject"
+                    className="text-sm font-medium block text-neutral-200"
                   >
-                    Name
+                    Subject
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formState.name}
+
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="border border-neutral-700 focus:border-spotify-green p-2 rounded-md w-full text-left text-neutral-200 flex items-center justify-between hover:bg-spotify-dark-highlight transition-all duration-200 ease-in-out"
+                    >
+                      <div className="flex items-center">
+                        <Edit3 className="h-4 w-4 mr-2 text-spotify-green" />
+                        <span>{formState.subject || "Please select"}</span>
+                      </div>
+                      {isOpen ? (
+                        <ChevronUp className="h-4 w-4 text-spotify-green" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-spotify-green" />
+                      )}
+                    </button>
+
+                    {isOpen && (
+                      <div
+                        className="absolute top-full left-0 w-full mt-1 bg-spotify-dark border border-neutral-700 rounded-md z-10 text-neutral-300 shadow-lg transform origin-top transition-all duration-200 ease-in-out"
+                        style={{
+                          animation: "dropdown-appear 0.2s ease-out forwards",
+                        }}
+                      >
+                        <style jsx>{`
+                          @keyframes dropdown-appear {
+                            from {
+                              opacity: 0;
+                              transform: translateY(-10px);
+                            }
+                            to {
+                              opacity: 1;
+                              transform: translateY(0);
+                            }
+                          }
+                        `}</style>
+                        {[
+                          "Job Opportunity",
+                          "Project Inquiry",
+                          "Collaboration",
+                          "General Question",
+                          "Other",
+                        ].map((option) => (
+                          <div
+                            key={option}
+                            className="p-3 hover:bg-spotify-dark-highlight hover:text-spotify-green cursor-pointer transition-colors duration-150 flex items-center"
+                            onClick={() => {
+                              handleSelectChange(option);
+                              setIsOpen(false);
+                            }}
+                          >
+                            <span className="w-1 h-5 bg-transparent rounded-full mr-2 group-hover:bg-spotify-green transition-all duration-150"></span>
+                            {option}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium block text-neutral-200"
+                  >
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formState.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-spotify-dark rounded-md border border-neutral-700 focus:border-spotify-green focus:outline-none focus:ring-1 focus:ring-spotify-green transition-colors"
+                    rows={6}
+                    className="bg-spotify-dark border-neutral-700 focus:border-spotify-green focus:ring-spotify-green resize-none text-neutral-200"
+                    style={{ backgroundColor: "var(--spotify-dark)" }}
                   />
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium block mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-spotify-dark rounded-md border border-neutral-700 focus:border-spotify-green focus:outline-none focus:ring-1 focus:ring-spotify-green transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="text-sm font-medium block mb-2"
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-3 bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full"
                 >
-                  Subject
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formState.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-spotify-dark rounded-md border border-neutral-700 focus:border-spotify-green focus:outline-none focus:ring-1 focus:ring-spotify-green transition-colors"
-                >
-                  <option value="">Please select</option>
-                  <option value="Job Opportunity">Job Opportunity</option>
-                  <option value="Project Inquiry">Project Inquiry</option>
-                  <option value="Collaboration">Collaboration</option>
-                  <option value="General Question">General Question</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="text-sm font-medium block mb-2"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-spotify-dark rounded-md border border-neutral-700 focus:border-spotify-green focus:outline-none focus:ring-1 focus:ring-spotify-green transition-colors resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="px-6 py-3 bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <span>Sending...</span>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5 mr-2" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
+                  {isSubmitting ? (
+                    <span>Sending...</span>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5 mr-2" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
-      {/* FAQ Section */}
-      <section className="bg-spotify-dark-elevated p-6 rounded-lg">
-        <h2 className="text-xl font-bold mb-6">Frequently Asked Questions</h2>
-
-        <div className="space-y-4">
+      <Card className="bg-spotify-dark-elevated border-none">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-neutral-200">
+            Frequently Asked Questions
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
           {[
             {
               question: "What types of projects do you work on?",
               answer:
-                "I specialize in full-stack web applications, from simple websites to complex web apps. I have experience with e-commerce, content management systems, dashboards, and more.",
+                "I work on Front-End, Back-End, and Full-Stack applications. From simple websites to complex web apps, including e-commerce platforms, content management systems, dashboards, and more.",
             },
             {
               question: "What is your typical timeline for projects?",
               answer:
-                "Timelines vary depending on the scope and complexity of the project. A simple website might take 2-3 weeks, while a complex web application could take 2-3 months. I'll provide a detailed timeline during our initial consultation.",
+                "Timelines depend on the scope and complexity of the project. A simple website might take 1–3 weeks, while a complex web application could take 1–3 months. I'll provide a detailed estimate during our initial consultation.",
             },
             {
               question: "How do you handle project pricing?",
               answer:
-                "I offer both hourly and project-based pricing depending on the nature of the work. For most projects, I prefer to provide a fixed price quote after understanding the requirements and scope.",
+                "I offer pricing based on mutual agreement and negotiation at the beginning, depending on the type and scope of the work required.",
             },
             {
               question: "Do you offer maintenance after project completion?",
               answer:
-                "Yes, I offer maintenance packages for all completed projects. This can include updates, bug fixes, security patches, and small feature additions.",
+                "Yes, I offer maintenance packages for all completed projects. This includes updates, bug fixes, security patches, and small feature additions.",
             },
           ].map((faq, index) => (
             <div key={index} className="p-4 bg-spotify-dark rounded-lg">
-              <h3 className="font-medium mb-2">{faq.question}</h3>
-              <p className="text-sm text-neutral-400">{faq.answer}</p>
+              <h3 className="font-medium mb-2 text-neutral-200">
+                {faq.question}
+              </h3>
+              <p className="text-sm text-neutral-300">{faq.answer}</p>
             </div>
           ))}
-        </div>
-      </section>
+        </CardContent>
+      </Card>
     </div>
   );
 }

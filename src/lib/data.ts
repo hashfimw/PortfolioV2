@@ -1,5 +1,3 @@
-//data.ts
-
 export interface Project {
   id: string;
   title: string;
@@ -16,17 +14,6 @@ export interface Project {
   category: string;
 }
 
-// export interface Experience {
-//   company: string;
-//   position: string;
-//   period: string;
-//   description: string;
-//   responsibilities?: string[];
-//   technologies?: string[];
-//   companyUrl?: string;
-//   logo?: string;
-// }
-
 export interface Skill {
   name: string;
   level: number; // 1-5 scale
@@ -42,20 +29,61 @@ export interface SkillCategory {
 // Projects data
 export const projects: Project[] = [
   {
-    id: "project-1",
-    title: "Wash.io | Laundry Web App",
+    id: "project-hlogger",
+    title: "Hlogger | Blog Platform",
     description:
-      "Collaboration Project, A full-featured e-commerce platform with service pickup delivery, user authentication, and payment integration.",
-    longDescription: `Developed a full-stack laundry management system using Next.js, TypeScript,
-Express.js, and Prisma to streamline operations. Implemented multi-role
-authentication (super admin, outlet admin, worker, driver) for secure access control.
-Built a real-time order tracking system with quality control and status updates.
-Designed an analytical dashboard for financial reporting and performance
-insights. Created a responsive UI optimized for different user roles, enhancing
-efficiency, staff coordination, and customer experience.`,
+      "A content management system for creating and managing blog posts with markdown support and image uploads.",
+    longDescription:
+      "This simple blog platform offers a modern writing experience with markdown support, image uploads, and SEO optimization. It includes features like categories,share blog posts directly to various platforms and author profiles.",
     image:
-      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743159990/Screenshot_2025-03-28_at_18.03.07_uzb8tk.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744019179/Screenshot_2025-04-06_at_13.37.25_eybx4d.png",
     images: [
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744019179/Screenshot_2025-04-06_at_13.37.25_eybx4d.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744019175/Screenshot_2025-04-06_at_13.38.05_yxocmp.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744019175/Screenshot_2025-04-06_at_13.39.22_neaeha.png",
+    ],
+    technologies: [
+      "Next.js",
+      "Contentfull (Headless CMS)",
+      "Tailwind CSS",
+      "TypeScript",
+      "React Icons",
+      "Cypress",
+      "Husky",
+    ],
+    features: [
+      "Markdown editor with preview",
+      "Image uploads and management",
+      "Categories and tags for organization",
+      "SEO optimization for posts",
+      "Cross-Platform Sharing",
+      "Responsive design for all devices",
+      "Author profiles and multiple contributors",
+      "Analytics for content performance",
+    ],
+    githubUrl: "https://github.com/yourusername/blog-platform",
+    liveUrl: "https://blog-platform-demo.com",
+    featured: false,
+    year: "2024",
+    category: "Content Management",
+  },
+  {
+    id: "project-washio",
+    title: "Wash.io |  E-Commerce Laundry Web App",
+    description:
+      "Collaboration Project, a full-featured e-commerce platform with service pickup delivery, user authentication, and payment integration, developed by a team of three.",
+    longDescription: `Developed a full-stack laundry management system using Next.js, TypeScript,
+    Express.js, and Prisma to streamline operations. Implemented multi-role
+    authentication (super admin, outlet admin, worker, driver) for secure access control.
+    Built a real-time order tracking system with quality control and status updates.
+    Designed an analytical dashboard for financial reporting and performance
+    insights. Created a responsive UI optimized for different user roles, enhancing
+    efficiency, staff coordination, and customer experience.`,
+    image:
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743159486/Screenshot_2025-03-20_at_22.09.30_wjgrit.png",
+
+    images: [
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743159990/Screenshot_2025-03-28_at_18.03.07_uzb8tk.png",
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743160473/Screenshot_2025-03-28_at_18.14.16_a3ifqu.png",
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743159486/Screenshot_2025-03-20_at_22.09.30_wjgrit.png",
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743159502/Screenshot_2025-03-20_at_22.08.16_zhdj2q.png",
@@ -67,19 +95,27 @@ efficiency, staff coordination, and customer experience.`,
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
+      "CSS3",
       "Prisma ORM",
       "Supabase (PostgreSQL)",
       "Payment Gateway (Midtrans)",
       "Framer Motion",
+      "Lucide Icons",
+      "Leaflet Map",
     ],
     features: [
       "Responsive design for all devices",
-      "Product catalog with categories and filters",
-      "Shopping cart and checkout process",
-      "User authentication and accounts",
-      "Payment processing with Stripe",
-      "Order management and tracking",
-      "Admin dashboard for inventory management",
+      "Modern and professional UI/UX design",
+      "User authentication with email verification and profile management",
+      "Address book with primary address selection",
+      "Pickup request with real-time order tracking",
+      "Online payment integration via payment gateway",
+      "Admin dashboard for managing outlets, employee, orders tracking, and laundry items",
+      "Role-based access for Admin, Driver, and Worker",
+      "Attendance tracking for drivers and workers",
+      "Reports for sales and employee performance",
+      "Order creation, item input, and status updates by workers",
+      "Delivery management with one active order per driver",
     ],
     githubUrl: "https://github.com/hashfimw?tab=repositories",
     liveUrl: "https://washio.vercel.app/login-admin",
@@ -88,12 +124,12 @@ efficiency, staff coordination, and customer experience.`,
     category: "E-Commerce",
   },
   {
-    id: "project-2",
+    id: "project-festify",
     title: "Festify. | Event Ticketing Management Web",
     description:
-      "A collaborative task management application with real-time updates, task assignments, and progress tracking.",
+      "A collaborative Event Management Platform created by a team of two, allowing organizers to create and promote events, while users can browse, register, and purchase tickets with a referral and reward system.",
     longDescription:
-      "This task management tool helps teams organize work efficiently with features like task creation, assignment, due dates, priority levels, comments, and real-time status updates. It includes board, list, and calendar views for versatile project management.",
+      "This Event Management Platform allows organizers to create and manage events, while attendees can browse, register, and purchase tickets. It features event discovery, ticket purchasing, user authentication, and a referral system offering points and discounts. Organizers can track event performance with visual stats, and the platform ensures a smooth experience across devices with responsive design and smart filtering. Transactions use IDR, and referral points expire after 3 months, redeemable for discounts.",
     image:
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1742499803/Screenshot_2025-03-21_at_02.42.28_naregm.png",
     images: [
@@ -110,29 +146,35 @@ efficiency, staff coordination, and customer experience.`,
       "Supabase(PostgreSQL)",
       "JWT",
       "Payment Gateway(Midtrans)",
+      "Tailwind CSS",
+      "CSS3",
     ],
     features: [
-      "Kanban board, list, and calendar views",
-      "Task creation with descriptions, due dates, and priorities",
-      "Task assignment and team collaboration",
-      "Real-time updates with Socket.io",
-      "Comments and file attachments",
-      "Progress tracking and reporting",
-      "Email notifications for task updates",
+      "Responsive and mobile-friendly layout",
+      "Event discovery with filtering, search (debounced), and pagination",
+      "Event detail pages with ticket purchase functionality",
+      "Support for free and paid events with IDR currency",
+      "Referral system with unique codes, point rewards, and 10% discount coupons",
+      "Points system with 3-month expiration and redemption capability",
+      "User authentication and role-based authorization (Participant & Organizer)",
+      "Organizer dashboard with event list, registrations, and transaction history",
+      "Graphical reports and analytics (by day, month, and year)",
+      "Event reviews and rating system for attendee feedback",
+      "Promotions with vouchers and date-based discounts",
     ],
-    githubUrl: "https://github.com/yourusername/task-manager",
+    githubUrl: "https://github.com/hashfimw",
     liveUrl: "https://frontend-festify.vercel.app",
     featured: true,
     year: "2024",
-    category: "Productivity",
+    category: "Event Ticketing",
   },
   {
-    id: "project-3",
+    id: "project-palseads",
     title: "Palse Advertising | Company Profile Website",
     description:
-      "A responsive portfolio website with smooth animations and a Spotify-inspired design.",
+      "A responsive and modern Company Profile Website showcasing the company's identity, services, portfolio, and contact information.",
     longDescription:
-      "This personal portfolio website showcases my projects, skills, and experience in a visually appealing interface inspired by Spotify's design language. It features dark mode, smooth transitions, responsive layout, and optimized performance.",
+      "This Company Profile Website is designed to professionally introduce a business to potential clients and partners. Built using modern technologies such as React, Next.js, and Tailwind CSS, the site provides a complete overview of the company, including the company profile, services offered, project portfolio, and a contact form integrated with email or WhatsApp. With a focus on clean and responsive UI/UX design, the website ensures a seamless user experience across all devices, from desktop to mobile. Smooth animations and subtle transitions enhance the professional and engaging look of the site.",
     image:
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1743171230/Screenshot_2025-03-28_at_21.12.16_yjcdqx.png",
     images: [
@@ -148,103 +190,22 @@ efficiency, staff coordination, and customer experience.`,
       "Contentfull (Content Management System)",
     ],
     features: [
-      "Spotify-inspired UI/UX design",
-      "Responsive layout for all devices",
-      "Project showcase with detailed pages",
-      "Skills and experience sections",
-      "Contact form with validation",
-      "Smooth animations and transitions",
-      "Optimized performance and SEO",
+      "Modern and professional UI/UX design",
+      "Responsive layout for desktop and mobile devices",
+      "Company introduction with mission and vision",
+      "Service section with detailed descriptions",
+      "Interactive project gallery or portfolio",
+      "Client testimonials for credibility",
+      "Contact form with validation and integration",
+      "Smooth animations and page transitions",
+      "Social media integration",
+      "Optimized performance and SEO-friendly structure",
     ],
     githubUrl: "https://github.com/hashfimw",
     liveUrl: "https://palse-advertising.vercel.app",
     featured: true,
-    year: "2023",
-    category: "Portfolio",
-  },
-  {
-    id: "project-4",
-    title: "Weather Dashboard",
-    description:
-      "A weather forecast application with location search, daily and hourly forecasts, and interactive maps.",
-    longDescription:
-      "This weather application provides detailed weather information with current conditions, hourly forecasts, 7-day predictions, and interactive maps. It features location search, weather alerts, and customizable units.",
-    image: "/project-4.jpg",
-    technologies: [
-      "React",
-      "TypeScript",
-      "OpenWeather API",
-      "Mapbox",
-      "Chart.js",
-    ],
-    features: [
-      "Current weather conditions display",
-      "Hourly and 7-day forecasts",
-      "Location search and geolocation",
-      "Interactive weather maps",
-      "Weather alerts and notifications",
-      "Temperature, wind, and precipitation charts",
-      "Customizable units (metric/imperial)",
-    ],
-    githubUrl: "https://github.com/yourusername/weather-app",
-    liveUrl: "https://weather-app-demo.com",
-    featured: false,
-    year: "2022",
-    category: "Utility",
-  },
-  {
-    id: "project-5",
-    title: "Blog Platform",
-    description:
-      "A content management system for creating and managing blog posts with markdown support and image uploads.",
-    longDescription:
-      "This blog platform offers a modern writing experience with markdown support, image uploads, and SEO optimization. It includes features like categories, tags, comments, author profiles, and analytics.",
-    image: "/project-5.jpg",
-    technologies: [
-      "Next.js",
-      "Sanity CMS",
-      "Tailwind CSS",
-      "Vercel",
-      "TypeScript",
-    ],
-    features: [
-      "Markdown editor with preview",
-      "Image uploads and management",
-      "Categories and tags for organization",
-      "Comment system with moderation",
-      "SEO optimization for posts",
-      "Author profiles and multiple contributors",
-      "Analytics for content performance",
-    ],
-    githubUrl: "https://github.com/yourusername/blog-platform",
-    liveUrl: "https://blog-platform-demo.com",
-    featured: false,
-    year: "2023",
-    category: "Content Management",
-  },
-  {
-    id: "project-6",
-    title: "Fitness Tracker",
-    description:
-      "A mobile-first web application for tracking workouts, progress, and setting fitness goals.",
-    longDescription:
-      "This fitness application helps users track workouts, monitor progress, and achieve fitness goals. It includes workout logging, progress charts, goal setting, and nutritional tracking to provide a comprehensive fitness experience.",
-    image: "/project-6.jpg",
-    technologies: ["React Native", "Firebase", "Redux", "Chart.js", "Expo"],
-    features: [
-      "Workout logging and exercise database",
-      "Progress tracking with charts and graphs",
-      "Goal setting and achievement tracking",
-      "Nutritional information and meal logging",
-      "Custom workout plans",
-      "Social sharing and challenges",
-      "Reminders and notifications",
-    ],
-    githubUrl: "https://github.com/yourusername/fitness-tracker",
-    liveUrl: "https://fitness-tracker-demo.com",
-    featured: false,
-    year: "2022",
-    category: "Health & Fitness",
+    year: "2024",
+    category: "Company Profile",
   },
 ];
 
@@ -363,18 +324,18 @@ export const skillCategories: SkillCategory[] = [
       },
       {
         name: "Docker",
-        level: 2,
+        level: 3,
         description:
           "Containerization for consistent development and deployment environments.",
       },
     ],
   },
   {
-    name: "Tools & Others",
+    name: "Others",
     icon: "🔧",
     skills: [
       {
-        name: "Testing (Jest, React Testing Library)",
+        name: "Testing (Cypress)",
         level: 4,
         description:
           "Writing unit and integration tests for robust applications.",

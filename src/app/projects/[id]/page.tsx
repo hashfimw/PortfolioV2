@@ -1,8 +1,18 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Github, ExternalLink, Calendar, Tag } from "lucide-react";
+import {
+  ArrowLeft,
+  Github,
+  ExternalLink,
+  Calendar,
+  Tag,
+  X,
+} from "lucide-react";
 import { projects } from "@/lib/data";
+import { useState } from "react";
 
 interface ProjectPageProps {
   params: {
@@ -12,13 +22,24 @@ interface ProjectPageProps {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const project = projects.find((p) => p.id === params.id);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   if (!project) {
     notFound();
   }
 
+  const openModal = (image: string) => {
+    setSelectedImage(image);
+    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = "auto"; // Re-enable scrolling
+  };
+
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4">
       {/* Project Header */}
       <div className="relative">
         {/* Back button */}
@@ -118,15 +139,35 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {project.images.map((image, index) => (
                   <div
                     key={index}
-                    className="relative aspect-video rounded-lg overflow-hidden bg-spotify-dark"
+                    className="relative aspect-video rounded-lg overflow-hidden bg-spotify-dark group cursor-pointer"
+                    onClick={() => openModal(image)}
                   >
                     <Image
                       src={image}
                       alt={`${project.title} screenshot ${index + 1}`}
                       layout="fill"
                       objectFit="cover"
-                      className="hover:scale-105 transition-transform duration-300"
+                      className="transition-transform duration-300 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <div className="bg-black/60 rounded-full p-3">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="11" cy="11" r="8" />
+                          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                          <line x1="11" y1="8" x2="11" y2="14" />
+                          <line x1="8" y1="11" x2="14" y2="11" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -220,8 +261,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               Interested in similar projects?
             </h3>
             <p className="text-sm text-neutral-300 mb-4">
-              Let's discuss how I can help bring your ideas to life with custom
-              web applications.
+              Let&apos;s discuss how I can help bring your ideas to life with
+              custom web applications.
             </p>
             <Link
               href="/contact"
@@ -280,6 +321,32 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             ))}
         </div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div className="relative max-w-6xl w-full max-h-[90vh]">
+            <button
+              onClick={closeModal}
+              className="absolute -top-12 right-0 bg-spotify-dark rounded-full p-2 hover:bg-spotify-dark-highlight transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <div className="relative aspect-video max-h-[80vh] w-full">
+              <Image
+                src={selectedImage}
+                alt="Project image"
+                layout="fill"
+                objectFit="contain"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

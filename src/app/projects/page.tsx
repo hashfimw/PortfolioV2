@@ -5,17 +5,17 @@ import { projects } from "@/lib/data";
 
 export default function ProjectsPage() {
   const featuredProjects = projects.filter((project) => project.featured);
-  const otherProjects = projects.filter((project) => !project.featured);
+  const otherProjects = projects.filter((project) => project);
 
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4">
       {/* Header */}
-      <div className="relative pt-8 md:pt-12 pb-6">
-        <div className="absolute inset-0 bg-gradient-to-b from-spotify-green/20 to-transparent opacity-30"></div>
+      <div className="relative pt-8 md:pt-12 pb-6 p-2">
+        <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/70 to-transparent opacity-30 rounded-xl"></div>
         <h1 className="text-3xl md:text-4xl font-bold relative z-10">
           My Projects
         </h1>
-        <p className="text-neutral-400 mt-2 max-w-3xl relative z-10">
+        <p className="text-neutral-400 mt-2 max-w-3xl relative z-10  ">
           A collection of my recent work spanning web applications, mobile apps,
           and design projects. Each project showcases different aspects of my
           skills and experience.
