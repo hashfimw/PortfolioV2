@@ -9,7 +9,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-10 pb-10 rounded-xl bg-spotify-dark p-4">
-      {/* Header */}
       <div className="relative pt-8 md:pt-12 pb-6 p-2">
         <div className="absolute inset-0 bg-gradient-to-b from-spotify-purple/70 to-transparent opacity-30 rounded-xl"></div>
         <h1 className="text-3xl md:text-4xl font-bold relative z-10">
@@ -22,7 +21,6 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      {/* Featured Projects */}
       <section>
         <h2 className="text-xl font-bold mb-6 flex items-center">
           <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
@@ -33,7 +31,7 @@ export default function ProjectsPage() {
           {featuredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-spotify-dark-elevated hover:bg-spotify-dark-highlight rounded-lg overflow-hidden transition-colors group"
+              className="bg-spotify-dark-elevated hover:bg-spotify-dark-highlight rounded-lg overflow-hidden transition-colors group spotify-card-hover"
             >
               <div className="aspect-video relative overflow-hidden">
                 <Image
@@ -100,7 +98,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* All Projects */}
       <section>
         <h2 className="text-xl font-bold mb-6 flex items-center">
           <span className="w-3 h-3 bg-spotify-green rounded-full mr-2"></span>
@@ -111,7 +108,7 @@ export default function ProjectsPage() {
           {otherProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-spotify-dark-elevated hover:bg-spotify-dark-highlight rounded-lg overflow-hidden p-4 transition-colors"
+              className="bg-spotify-dark-elevated hover:bg-spotify-dark-highlight rounded-lg overflow-hidden p-4 transition-colors spotify-card-hover"
             >
               <div className="aspect-video relative mb-3 rounded overflow-hidden bg-spotify-dark">
                 <Image

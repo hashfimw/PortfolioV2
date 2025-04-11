@@ -30,19 +30,17 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   const openModal = (image: string) => {
     setSelectedImage(image);
-    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedImage(null);
-    document.body.style.overflow = "auto"; // Re-enable scrolling
+    document.body.style.overflow = "auto";
   };
 
   return (
     <div className="space-y-6 sm:space-y-10 pb-6 sm:pb-10 rounded-xl bg-spotify-dark p-3 sm:p-4">
-      {/* Project Header */}
       <div className="relative">
-        {/* Back button */}
         <div className="md:absolute md:top-5 md:left-5 md:z-10 relative md:pb-0 md:pt-0 pb-4 pt-2 z-10">
           <Link
             href="/projects"
@@ -53,7 +51,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </Link>
         </div>
 
-        {/* Hero image */}
         <div className="relative aspect-video w-full overflow-hidden rounded-lg">
           <Image
             src={project.image || "/project-placeholder.jpg"}
@@ -63,7 +60,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             className="brightness-75"
           />
 
-          {/* Overlay content */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
             <div className="flex flex-wrap gap-1 sm:gap-2 mb-2 sm:mb-4">
@@ -91,11 +87,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </div>
 
-      {/* Project details */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
-        {/* Main content */}
         <div className="lg:col-span-2 space-y-4 sm:space-y-8">
-          {/* Overview */}
           <section>
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 flex items-center">
               <span className="w-2 h-2 sm:w-3 sm:h-3 bg-spotify-green rounded-full mr-2"></span>
@@ -108,7 +101,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </section>
 
-          {/* Features */}
           {project.features && project.features.length > 0 && (
             <section>
               <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 flex items-center">
@@ -130,7 +122,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </section>
           )}
 
-          {/* Gallery */}
           {project.images && project.images.length > 0 && (
             <section>
               <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 flex items-center">
@@ -177,7 +168,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </section>
           )}
 
-          {/* Technologies Used */}
           <section>
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 flex items-center">
               <span className="w-2 h-2 sm:w-3 sm:h-3 bg-spotify-green rounded-full mr-2"></span>
@@ -198,9 +188,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </section>
         </div>
 
-        {/* Sidebar */}
         <div className="space-y-4 sm:space-y-6">
-          {/* Project Links */}
           <div className="bg-spotify-dark-elevated p-4 sm:p-6 rounded-lg">
             <h3 className="font-medium text-sm sm:text-base mb-3 sm:mb-4">
               Project Links
@@ -238,7 +226,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Project Info */}
           <div className="bg-spotify-dark-elevated p-4 sm:p-6 rounded-lg">
             <h3 className="font-medium text-sm sm:text-base mb-3 sm:mb-4">
               Project Info
@@ -266,7 +253,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Call to Action */}
           <div className="bg-gradient-to-r from-spotify-green/20 to-spotify-blue/20 p-4 sm:p-6 rounded-lg">
             <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">
               Interested in similar projects?
@@ -285,7 +271,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </div>
 
-      {/* Related Projects */}
       <section>
         <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-6 flex items-center">
           <span className="w-2 h-2 sm:w-3 sm:h-3 bg-spotify-green rounded-full mr-2"></span>
@@ -335,26 +320,27 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      {/* Image Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-2 sm:p-4"
+          className="fixed inset-[-30px] bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4 backdrop-blur-sm"
           onClick={closeModal}
         >
-          <div className="relative max-w-6xl w-full max-h-[90vh]">
+          <div className="relative max-w-7xl w-full max-h-[90vh]">
             <button
               onClick={closeModal}
               className="absolute -top-8 sm:-top-12 right-0 bg-spotify-dark rounded-full p-1.5 sm:p-2 hover:bg-spotify-dark-highlight transition-colors"
             >
               <X className="h-4 w-4 sm:h-6 sm:w-6" />
             </button>
-            <div className="relative aspect-video max-h-[80vh] w-full">
+            <div className="relative w-full h-auto max-w-full max-h-[80vh] sm:max-h-[85vh] md:max-h-[90vh] p-9 md:p-0">
               <Image
                 src={selectedImage}
                 alt="Project image"
-                layout="fill"
+                layout="responsive"
+                width={1200}
+                height={675}
                 objectFit="contain"
-                className="rounded-lg"
+                className="rounded-xl"
               />
             </div>
           </div>

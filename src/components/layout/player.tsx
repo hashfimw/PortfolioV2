@@ -38,7 +38,6 @@ const demoTracks: Track[] = [
   },
 ];
 
-// Custom heart icon to support fill color
 const HeartIcon = ({ filled = false }: { filled?: boolean }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -83,13 +82,9 @@ const NowPlayingBar = () => {
 
   const currentTrack = tracks[currentTrackIndex];
 
-  // Create audio element and set up initial state
   useEffect(() => {
-    // Create audio element if it doesn't exist
     if (!audioRef.current) {
       audioRef.current = new Audio(currentTrack.audioSrc);
-
-      // Set up event listeners
       audioRef.current.addEventListener("loadedmetadata", () => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration);
@@ -98,13 +93,10 @@ const NowPlayingBar = () => {
       });
 
       audioRef.current.addEventListener("ended", handleTrackEnd);
-
-      // Set initial volume
       audioRef.current.volume = volume / 100;
     }
 
     return () => {
-      // Clean up
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.removeEventListener("loadedmetadata", () => {});
@@ -117,7 +109,6 @@ const NowPlayingBar = () => {
     };
   }, []);
 
-  // Handle track end event
   const handleTrackEnd = () => {
     if (audioRef.current) {
       if (isRepeatOn) {
@@ -126,47 +117,34 @@ const NowPlayingBar = () => {
           .play()
           .catch((err) => console.error("Failed to replay track:", err));
       } else {
-        // If it's the last track and not on repeat, pause and reset
         if (currentTrackIndex === tracks.length - 1 && !isShuffleOn) {
           setIsPlaying(false);
-          // Reset to beginning of current track
           audioRef.current.currentTime = 0;
         } else {
-          // Otherwise play next track
           handleNextTrack();
         }
       }
     }
   };
 
-  // Handle track changes
   useEffect(() => {
     if (audioRef.current) {
-      // Store playing state before changing track
       const wasPlaying = !audioRef.current.paused;
-
-      // Remove old event listener before updating
       audioRef.current.removeEventListener("ended", handleTrackEnd);
-
-      // Update the src
       audioRef.current.src = currentTrack.audioSrc;
-      audioRef.current.load(); // Force reload metadata
+      audioRef.current.load();
 
-      // Reset state
       setProgress(0);
       setCurrentTime(0);
       setAudioLoaded(false);
 
-      // Add updated event listener
       audioRef.current.addEventListener("ended", handleTrackEnd);
 
-      // Add one-time event listener for metadata loading
       const handleMetadata = () => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration);
           setAudioLoaded(true);
 
-          // Resume playing if it was playing before
           if (wasPlaying) {
             audioRef.current.play().catch(() => {
               console.log("Playback failed - user may need to interact first");
@@ -188,7 +166,6 @@ const NowPlayingBar = () => {
     }
   }, [volume]);
 
-  // Handle progress updates
   useEffect(() => {
     const updateProgress = () => {
       if (audioRef.current) {
@@ -202,22 +179,17 @@ const NowPlayingBar = () => {
     };
 
     if (isPlaying) {
-      // Clear any existing intervals
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
       }
-
-      // Start a new interval
       progressIntervalRef.current = setInterval(updateProgress, 50);
     } else {
-      // Clear interval when not playing
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
         progressIntervalRef.current = null;
       }
     }
 
-    // Clean up on unmount
     return () => {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
@@ -225,7 +197,6 @@ const NowPlayingBar = () => {
     };
   }, [isPlaying]);
 
-  // Handle dragging
   useEffect(() => {
     // Add event listeners for mouse movements when dragging
     const handleMouseMove = (e: MouseEvent) => {
@@ -293,7 +264,6 @@ const NowPlayingBar = () => {
 
   const handleNextTrack = () => {
     if (isShuffleOn) {
-      // Select random track except current one
       let nextIndex;
       do {
         nextIndex = Math.floor(Math.random() * tracks.length);
@@ -303,20 +273,16 @@ const NowPlayingBar = () => {
       const nextIndex = (currentTrackIndex + 1) % tracks.length;
       setCurrentTrackIndex(nextIndex);
     }
-    // The audio source change is handled in the useEffect
   };
 
   const handlePrevTrack = () => {
-    // If we're more than 3 seconds into the track, go to start of current track
     if (audioRef.current && audioRef.current.currentTime > 3) {
       audioRef.current.currentTime = 0;
     } else {
-      // Otherwise go to previous track
       const prevIndex =
         currentTrackIndex === 0 ? tracks.length - 1 : currentTrackIndex - 1;
       setCurrentTrackIndex(prevIndex);
     }
-    // The audio source change is handled in the useEffect
   };
 
   const handleProgressMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -374,8 +340,6 @@ const NowPlayingBar = () => {
   const toggleExpandMobilePlayer = () => {
     setPlayerTransitioning(true);
     setExpandMobilePlayer(!expandMobilePlayer);
-
-    // After transition completes, reset the flag
     setTimeout(() => {
       setPlayerTransitioning(false);
     }, 300);
@@ -385,7 +349,6 @@ const NowPlayingBar = () => {
     setPlayerTransitioning(true);
     setExpandDesktopPlayer(!expandDesktopPlayer);
 
-    // After transition completes, reset the flag
     setTimeout(() => {
       setPlayerTransitioning(false);
     }, 300);
@@ -405,7 +368,7 @@ const NowPlayingBar = () => {
 
   return (
     <>
-      {/* Mobile Player Bar (collapsed view) - positioned at bottom above mobile nav */}
+      {/* Mobile Player Bar*/}
       <div
         className={`${
           expandMobilePlayer ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -456,8 +419,6 @@ const NowPlayingBar = () => {
             <ExpandIcon className="w-5 h-5" />
           </button>
         </div>
-
-        {/* Progress bar for mini player */}
         <div className="absolute bottom-0 left-1 right-1 h-1 bg-spotify-dark-highlight rounded-2xl ">
           <div
             className="bg-green-500 h-full"
@@ -465,8 +426,6 @@ const NowPlayingBar = () => {
           ></div>
         </div>
       </div>
-
-      {/* Mobile Player (expanded view) */}
       <div
         className={`${
           expandMobilePlayer
@@ -568,7 +527,7 @@ const NowPlayingBar = () => {
         </div>
       </div>
 
-      {/* Desktop Expanded Player (only shows when toggled) */}
+      {/* Desktop */}
       <div
         className={`${
           expandDesktopPlayer
@@ -594,7 +553,6 @@ const NowPlayingBar = () => {
         </div>
 
         <div className="flex-1 flex gap-12 items-center justify-center mb-8">
-          {/* Album art */}
           <div className="w-96 h-96 bg-neutral-800 rounded-lg overflow-hidden shadow-xl">
             {currentTrack.cover && (
               <Image
@@ -607,7 +565,6 @@ const NowPlayingBar = () => {
             )}
           </div>
 
-          {/* Track info and controls */}
           <div className="w-96">
             <h2 className="text-white text-3xl font-bold mb-2">
               {currentTrack.title}
@@ -619,10 +576,8 @@ const NowPlayingBar = () => {
         </div>
       </div>
 
-      {/* Desktop Player */}
       <footer className="h-20 bg-black lg:flex items-center px-4 hidden">
         <div className="grid grid-cols-3 w-full">
-          {/* Now playing info (left) */}
           <div className="flex items-center gap-4">
             <div
               className="w-14 h-14 bg-neutral-800 rounded flex-shrink-0 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
@@ -657,7 +612,6 @@ const NowPlayingBar = () => {
             </button>
           </div>
 
-          {/* Player controls (center) */}
           <div className="flex flex-col items-center">
             <div className="flex items-center gap-4 mb-2">
               <button
@@ -723,7 +677,6 @@ const NowPlayingBar = () => {
             </div>
           </div>
 
-          {/* Volume & other controls (right) */}
           <div className="flex justify-end items-center gap-3">
             <a
               href="https://github.com/hashfimw"
