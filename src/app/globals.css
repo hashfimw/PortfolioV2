@@ -167,21 +167,31 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
-/* Base styles */
+
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overflow-container {
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+  }
+}
+
 body {
   background-color: #121212;
   color: #ffffff;
   font-family: "Spotify Mix", "Spotify Mix Ultra", sans-serif;
 }
 
-/* Custom Spotify-inspired reusable components */
 @layer components {
-  /* Card hover effects */
   .spotify-card {
     @apply bg-spotify-dark-elevated rounded-md transition-all duration-300 hover:bg-spotify-dark-highlight;
   }
 
-  /* Button styles */
   .spotify-button-primary {
     @apply bg-spotify-green hover:bg-spotify-green-bright text-black font-medium rounded-full px-6 py-2 transition-colors duration-200;
   }
@@ -194,12 +204,10 @@ body {
     @apply bg-spotify-dark-elevated hover:bg-spotify-dark-highlight text-white font-medium rounded-full px-6 py-2 transition-colors duration-200 border border-neutral-700;
   }
 
-  /* Link styles */
   .spotify-link {
     @apply text-spotify-green hover:text-spotify-green-bright underline-offset-2 hover:underline transition-colors duration-200;
   }
 
-  /* Gradient backgrounds */
   .spotify-gradient-subtle {
     @apply bg-gradient-to-b from-spotify-dark-highlight/50 to-spotify-dark;
   }
@@ -208,17 +216,14 @@ body {
     @apply bg-gradient-to-tr from-spotify-purple/30 via-spotify-dark to-spotify-green/30;
   }
 
-  /* Container with Spotify-like padding */
   .spotify-container {
     @apply px-4 md:px-8 max-w-screen-xl mx-auto;
   }
 
-  /* Section styles */
   .spotify-section {
     @apply py-6 md:py-8;
   }
 
-  /* Heading styles */
   .spotify-heading-xl {
     @apply text-3xl md:text-5xl font-bold;
   }
@@ -231,13 +236,11 @@ body {
     @apply text-xl font-bold;
   }
 
-  /* Spotify-like grid for cards */
   .spotify-grid {
     @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6;
   }
 }
 
-/* Animations */
 @keyframes spotifyFadeIn {
   from {
     opacity: 0;
@@ -253,7 +256,6 @@ body {
   animation: spotifyFadeIn 0.5s ease forwards;
 }
 
-/* Spotify-like album/project card hover effect */
 .spotify-card-hover {
   transition: all 0.3s ease;
 }
@@ -263,7 +265,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Media queries for responsive behavior similar to Spotify */
 @media (max-width: 768px) {
   .spotify-mobile-hidden {
     display: none;
@@ -289,7 +290,6 @@ body {
   background-color: #121212 !important;
 }
 
-/* Specific utility for text gradients */
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
@@ -363,5 +363,5 @@ body {
 }
 
 .select-placeholder {
-  color: #d4d4d4 !important; /* This corresponds to text-neutral-300 */
+  color: #d4d4d4 !important;
 }

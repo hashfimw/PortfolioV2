@@ -40,7 +40,7 @@ export default function RootLayout({
             <Header />
             <div className="flex-1 overflow-hidden py-2 bg-black md:pb-[88px] pb-[115px]">
               <div className="px-2 md:px-2 h-full ">
-                <div className="h-full overflow-y-auto rounded-xl shadow-spotify-dark-elevated">
+                <div className="h-full overflow-y-auto overflow-container rounded-xl shadow-spotify-dark-elevated">
                   {children}
                 </div>
               </div>
