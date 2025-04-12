@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     title: "Hashfi Mawarid",
     statusBarStyle: "black-translucent",
     startupImage: [
-      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
     ],
   },
   appLinks: {
@@ -104,14 +104,14 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       {
-        url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
-        type: "image/png",
+        url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
+        type: "image/svg",
       },
     ],
     shortcut:
-      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
     apple:
-      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
   },
   verification: {
     google: process.env.NEXT_GSEARCH || "",
@@ -146,11 +146,10 @@ export default function RootLayout({
                 "Tailwind CSS",
               ],
               image:
-                "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+                "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
               sameAs: [
                 "https://linkedin.com/in/hashfimawarid",
-                "https://github.com/hashfimawarid",
-                "https://twitter.com/hashfimawarid",
+                "https://github.com/hashfimw",
               ],
               mainEntityOfPage: {
                 "@type": "WebPage",
