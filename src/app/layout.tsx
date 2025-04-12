@@ -159,7 +159,7 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Add additional Schema.org markup for WebSite */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
