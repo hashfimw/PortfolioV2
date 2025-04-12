@@ -92,10 +92,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.ico", sizes: "48x48" },
       {
         url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744455273/Untitled_design_wny43b.svg",
-        type: "image/svg",
+        type: "image/svg+xml",
       },
     ],
     shortcut:

@@ -93,6 +93,8 @@ export const projects: Project[] = [
     ],
     technologies: [
       "Next.js",
+      "Express.js",
+      "Node.js",
       "TypeScript",
       "Tailwind CSS",
       "CSS3",
@@ -142,7 +144,7 @@ export const projects: Project[] = [
       "Next.js",
       "Node.js",
       "Prisma ORM",
-      "Express",
+      "Express.js",
       "Supabase(PostgreSQL)",
       "JWT",
       "Payment Gateway(Midtrans)",
