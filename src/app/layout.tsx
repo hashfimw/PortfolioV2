@@ -16,10 +16,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     template: "%s | Hashfi Mawarid",
-    default: "Hashfi Mawarid - Frontend & Fullstack Developer Portfolio",
+    default: "Hashfi Mawarid - Frontend & Fullstack Developer",
   },
   description:
-    "Hashfi Mawarid Portfolio, Portfolio website with Spotify-inspired UI/UX using Next.js 14, TypeScript, Tailwind CSS, and custom CSS. Created pixel-perfect frontend components that adapt Spotify's visual design for portfolio purposes.",
+    "Frontend & Fullstack Developer specializing in Next.js, TypeScript, and React. Portfolio featuring Spotify-inspired UI/UX with modern web technologies.",
   keywords: [
     "Hashfi Mawarid",
     "web developer",
@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     url: "https://hashfimw.my.id",
-    title: "Hashfi Mawarid - Frontend & FullStack Web Developer.",
+    title: "Hashfi Mawarid - Frontend & FullStack Developer",
+    siteName: "Hashfi Mawarid",
     description:
-      "Hashfi Mawarid Portfolio, Portfolio website with Spotify-inspired UI/UX using Next.js, TypeScript, Tailwind CSS, and custom CSS. Created pixel-perfect frontend components that adapt Spotify's visual design for portfolio purposes.",
-    siteName: "Hashfi Mawarid Portfolio",
+      "Frontend & Fullstack Developer specializing in Next.js, TypeScript, and React. Portfolio featuring Spotify-inspired UI/UX.",
     images: [
       {
         url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744361477/Screenshot_2025-04-11_at_08.22.57_psokvx.png",
@@ -68,16 +68,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hashfi Mawarid - Frontend & FullStack Web Developer.",
+    title: "Hashfi Mawarid - Frontend & FullStack Developer",
     description:
-      "Portfolio website with Spotify-inspired UI/UX using Next.js 14, TypeScript, and Tailwind CSS",
+      "Portfolio featuring Spotify-inspired UI/UX using Next.js 14, TypeScript, and Tailwind CSS",
     images: [
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744361477/Screenshot_2025-04-11_at_08.22.57_psokvx.png",
     ],
     creator: "@hashfimawarid",
   },
   appleWebApp: {
-    title: "Hashfi Mawarid Portfolio",
+    title: "Hashfi Mawarid",
     statusBarStyle: "black-translucent",
     startupImage: [
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
@@ -101,21 +101,23 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      {
+        url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
+        type: "image/png",
+      },
+    ],
     shortcut:
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
     apple:
       "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
-    other: {
-      rel: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
-      url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275839/1_nuubki.png",
-    },
   },
   verification: {
     google: process.env.NEXT_GSEARCH || "",
   },
   category: "portfolio",
-  applicationName: "Hashfi Mawarid Portfolio",
+  applicationName: "Hashfi Mawarid",
 };
 
 export default function RootLayout({
@@ -134,11 +136,11 @@ export default function RootLayout({
               "@type": "Person",
               name: "Hashfi Mawarid",
               url: "https://hashfimw.my.id",
-              jobTitle: "Front-End & Full-Stack Developer",
-              alumniOf: "University of Indonesia",
+              jobTitle: "Frontend & Fullstack Developer",
+              alumniOf: "Purwadhika Digital Technology School",
               knowsAbout: [
-                "Front-End Development",
-                "Full-Stack Development",
+                "Frontend Development",
+                "Fullstack Development",
                 "React",
                 "Next.js",
                 "Tailwind CSS",
@@ -150,6 +152,34 @@ export default function RootLayout({
                 "https://github.com/hashfimawarid",
                 "https://twitter.com/hashfimawarid",
               ],
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://hashfimw.my.id",
+              },
+              logo: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744275840/logowhite_vc9dmz.png",
+            }),
+          }}
+        />
+        {/* Add additional Schema.org markup for WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Hashfi Mawarid",
+              url: "https://hashfimw.my.id",
+              description:
+                "Frontend & Fullstack Developer portfolio showcasing projects and skills",
+              publisher: {
+                "@type": "Person",
+                name: "Hashfi Mawarid",
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://hashfimw.my.id/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
             }),
           }}
         />
@@ -178,7 +208,6 @@ export default function RootLayout({
                 <div className="h-full overflow-y-auto overflow-container rounded-xl shadow-spotify-dark-elevated">
                   <h1 className="sr-only">
                     Hashfi Mawarid - Frontend Developer & Fullstack Developer
-                    Portfolio
                   </h1>
                   {children}
                 </div>
