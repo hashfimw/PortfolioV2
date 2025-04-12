@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "Hashfi Mawarid - Frontend & Fullstack Developer",
   },
   description:
-    "Frontend & Fullstack Developer specializing in Next.js, TypeScript, and React. Portfolio featuring Spotify-inspired UI/UX with modern web technologies.",
+    "Frontend & Fullstack Developer passionate about creating modern, responsive web experiences. My portfolio showcases a Spotify-inspired UI/UX built with the latest web technologies.",
   keywords: [
     "Hashfi Mawarid",
     "web developer",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Hashfi Mawarid - Frontend & FullStack Developer",
     siteName: "Hashfi Mawarid",
     description:
-      "Frontend & Fullstack Developer specializing in Next.js, TypeScript, and React. Portfolio featuring Spotify-inspired UI/UX.",
+      "Frontend & Fullstack Developer passionate about creating modern, responsive web experiences. My portfolio showcases a Spotify-inspired UI/UX built with the latest web technologies.",
     images: [
       {
         url: "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744361477/Screenshot_2025-04-11_at_08.22.57_psokvx.png",
@@ -65,16 +65,6 @@ export const metadata: Metadata = {
         alt: "Hashfi Mawarid Portfolio",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Hashfi Mawarid - Frontend & FullStack Developer",
-    description:
-      "Portfolio featuring Spotify-inspired UI/UX using Next.js 14, TypeScript, and Tailwind CSS",
-    images: [
-      "https://res.cloudinary.com/ddzq2jzva/image/upload/v1744361477/Screenshot_2025-04-11_at_08.22.57_psokvx.png",
-    ],
-    creator: "@hashfimawarid",
   },
   appleWebApp: {
     title: "Hashfi Mawarid",
