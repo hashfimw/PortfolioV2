@@ -90,7 +90,8 @@ export default function Header() {
 
           <div className="flex items-center space-x-1 md:space-x-1">
             <a
-              href="https://drive.google.com/uc?export=download&id=1Tmolkj4ThftmcdwUfRH0OD3KvDMUd_El"
+              href="https://drive.google.com/file/d/1S8bb7rsexYd5of0cRiIZjAmJMGRWCqVh/view?usp=drive_link"
+              target="_blank"
               className="flex items-center px-4 py-2 text-sm font-medium text-neutral-400 hover:text-neutral-100 transition-colors duration-200"
             >
               <Download className="h-4 w-4 mr-2" />

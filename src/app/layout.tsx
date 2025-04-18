@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     "Mawarid",
     "Frontend Developer Indonesia",
   ],
+  applicationName: "Hashfi",
   authors: [{ name: "Hashfi Mawarid", url: "https://hashfimw.my.id" }],
   creator: "Hashfi Mawarid",
   publisher: "Hashfi Mawarid",
@@ -107,7 +108,6 @@ export const metadata: Metadata = {
     google: process.env.NEXT_GSEARCH || "",
   },
   category: "portfolio",
-  applicationName: "Hashfi Mawarid",
 };
 
 export default function RootLayout({

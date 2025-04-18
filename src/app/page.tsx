@@ -188,7 +188,7 @@ export default function Home() {
               Contact Me
             </Link>
             <a
-              href="https://drive.google.com/uc?export=download&id=1Tmolkj4ThftmcdwUfRH0OD3KvDMUd_El"
+              href="https://drive.google.com/file/d/1S8bb7rsexYd5of0cRiIZjAmJMGRWCqVh/view?usp=drive_link"
               target="_blank"
               className="inline-flex items-center px-6 py-3 bg-spotify-dark-elevated hover:bg-spotify-dark-highlight text-neutral-300 font-medium rounded-full transition-colors"
             >
